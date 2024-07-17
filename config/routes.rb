@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'copies/index'
+  # get 'copies/index'
+  # get 'books/index'
+
   resources :books do
     resources :copies, only: [:create, :edit, :update, :destroy]
   end
