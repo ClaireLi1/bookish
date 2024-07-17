@@ -1,2 +1,9 @@
-<h1>Copies#index</h1>
-<p>Find me in app/views/copies/index.html.erb</p>
+<h1>Copies</h1>
+<ul>
+  <% for copy in @copies %>
+    <li><%= copy.id %></li>
+    <li><%= copy.book_id %></li>
+    <li><%= copy.borrower %></li>
+    <li><%= copy.due_date %></li>
+  <% end %>
+</ul>

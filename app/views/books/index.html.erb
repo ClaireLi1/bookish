@@ -1,6 +1,23 @@
 <h1>My Books</h1>
-<ul>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">id</th>
+    <th scope="col">Title</th>
+    <th scope="col">Author</th>
+    <th scope="col">ISBN</th>
+  </tr>
+  </thead>
+  <tbody>
   <% for book in @books %>
-    <li><%= book.title %></li>
+    <tr>
+      <td><%= book.id %></td>
+      <td><%= book.title %></td>
+      <td><%= book.author %></td>
+      <td><%= book.isbn %></td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
+
