@@ -499,7 +499,7 @@
     </routine>
     <schema id="191" parent="1" name="main">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-07-17.09:35:11</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-07-17.09:35:41</LastIntrospectionLocalTimestamp>
     </schema>
     <argument id="192" parent="16">
       <ArgumentDirection>R</ArgumentDirection>
@@ -1674,7 +1674,7 @@
       <Position>1</Position>
     </column>
     <column id="576" parent="557" name="book_id">
-      <DasType>varchar|0s</DasType>
+      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>

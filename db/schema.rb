@@ -25,6 +25,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_092327) do
     t.string "due_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_copies_on_book_id"
   end
 
+  add_foreign_key "copies", "books"
 end
