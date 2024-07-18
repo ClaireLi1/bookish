@@ -1,10 +1,16 @@
-<% if @book %>
+<%# if @book %>
+<!--  <h1>Copies of <%#= @book.title %></h1>-->
+  <%#= link_to 'New Copy', new_book_copy_path(@book), class: 'btn btn-primary' %>
+<!--  <button onclick="window.history.back()" class="btn btn-secondary">Back</button>-->
+<%# else %>
+<!--  <h1>All Copies</h1>-->
+<%# end %>
+
+<div class = "text-center">
   <h1>Copies of <%= @book.title %></h1>
-  <%= link_to 'Back to Book', books_path, class: 'btn btn-secondary' %>
   <%= link_to 'New Copy', new_book_copy_path(@book), class: 'btn btn-primary' %>
-<% else %>
-  <h1>All Copies</h1>
-<% end %>
+  <button onclick="window.history.back()" class="btn btn-secondary">Back</button>
+</div>
 
 <table class="table">
   <thead>

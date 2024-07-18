@@ -1,3 +1,11 @@
+<div class="mb-3 text-center">
+  <h1>Update Book Form</h1>
+</div>
+
+<div id="AddBookFormHelpBlock" class="form-text mx-auto text-center">
+  This form allows you to update the information for this book.
+</div>
+
 <%= form_with(model: @book, local: true) do |form| %>
 
   <div class="mb-3 mx-auto mt-3" style="max-width: 500px; margin: auto;">
@@ -26,5 +34,5 @@
 <% end %>
 
 <div class="text-center mx-auto mt-2">
-  <%= link_to 'Back', books_path, class: 'btn btn-secondary' %>
+  <button onclick="window.history.back()" class="btn btn-secondary">Back</button>
 </div>

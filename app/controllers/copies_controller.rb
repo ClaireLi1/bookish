@@ -27,7 +27,7 @@ class CopiesController < ApplicationController
   def update
     @book = Book.find(params[:book_id])
     @copy = @book.copies.find(params[:id])
-    if @copy.save
+    if @copy.update(copy_params)
       redirect_to book_copies_path(@book)
     else
       render :edit
