@@ -7,6 +7,7 @@
     <th scope="col">Title</th>
     <th scope="col">Author</th>
     <th scope="col">ISBN</th>
+    <th scope="col">Actions</th>
   </tr>
   </thead>
   <tbody>
@@ -16,6 +17,10 @@
       <td><%= book.title %></td>
       <td><%= book.author %></td>
       <td><%= book.isbn %></td>
+      <td>
+        <%= link_to 'Edit', edit_book_path(book), class: 'btn btn-primary btn-sm' %>
+        <%= link_to 'Copies', book_copies_path(book), class: 'btn btn-secondary btn-sm' %>
+      </td>
     </tr>
   <% end %>
   </tbody>

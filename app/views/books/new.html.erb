@@ -1,0 +1,51 @@
+<div class="mb-3 text-center">
+  <h1>Add Book Form</h1>
+</div>
+
+<div id="AddBookFormHelpBlock" class="form-text mx-auto text-center">
+  This form allows you to add books into the library by providing title, author and unique isbn of the book.
+</div>
+
+<%= form_with(model: @book, local: true) do |form| %>
+
+  <div class="mb-3 mx-auto mt-3" style="max-width: 500px; margin: auto;">
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-control', required: true %>
+    <div class="invalid-feedback">
+      Please provide a valid title.
+    </div>
+
+    <%= form.label :author, class: 'form-label' %>
+    <%= form.text_field :author, class: 'form-control', required: true %>
+    <div class="invalid-feedback">
+      Please provide a valid author.
+    </div>
+
+    <%= form.label :isbn, class: 'form-label' %>
+    <%= form.text_field :isbn, class: 'form-control', required: true %>
+    <div class="invalid-feedback">
+      Please provide a valid ISBN.
+    </div>
+  </div>
+
+  <div class="actions text-center">
+    <%= form.submit 'Create Book', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<div class="text-center mx-auto mt-2">
+  <%= link_to 'Back', books_path, class: 'btn btn-secondary' %>
+</div>
+
+<%#= form_with url: create_book_path, local: true, data: { turbo: false } do %>
+<!--  <div class="mb-3 mt-4" style="max-width: 500px; margin: auto;">-->
+    <%#= label_tag :postcode, "Postcode", class: "form-label" %>
+<!--    <div class="d-flex">-->
+      <%#= text_field_tag :postcode, nil, class: "form-control me-2", id: "inputPostcode", aria: { describedby: "postcodeHelpBlock" } %>
+      <%#= submit_tag "Get BusBoard", class: "btn btn-primary" %>
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div id="postcodeHelpBlock" class="form-text" style="max-width: 500px; margin: auto;">-->
+<!--    Please enter a valid postcode as a combination of capital letters and numbers without any spaces. (e.g. NW51TL)-->
+<!--  </div>-->
+<%# end %>
