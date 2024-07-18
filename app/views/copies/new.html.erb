@@ -1,0 +1,33 @@
+<div class="mb-3 text-center">
+  <h1>New Copy for <%= @book.title %> with book_id <%= @book.id%></h1>
+</div>
+
+<div id="AddCopyFormHelpBlock" class="form-text mx-auto text-center">
+  This form allows you to add copies of <%= @book.title %> into the library by providing borrower and due_date.
+</div>
+
+<%= form_with(model: [@book, @copy], local: true) do |form| %>
+
+  <div class="mb-3 mx-auto mt-3" style="max-width: 500px; margin: auto;">
+    <%= form.label :borrower, class: 'form-label' %>
+    <%= form.text_field :borrower, class: 'form-control' %>
+    <div class="invalid-feedback">
+      Please provide borrower's name. (Leave empty if no borrower)
+    </div>
+
+    <%= form.label :due_date, class: 'form-label' %>
+    <%= form.date_field :due_date, class: 'form-control'%>
+    <div class="invalid-feedback">
+      Please provide a due date for this copy. (Leave empty if no borrower)
+    </div>
+
+  </div>
+
+  <div class="actions text-center">
+    <%= form.submit 'Create Copy', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<div class="text-center mx-auto mt-2">
+  <%= link_to 'Back', book_copies_path(@book), class: 'btn btn-secondary' %>
+</div>

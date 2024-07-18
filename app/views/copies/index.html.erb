@@ -1,9 +1,32 @@
-<h1>Copies</h1>
-<ul>
+<% if @book %>
+  <h1>Copies of <%= @book.title %></h1>
+  <%= link_to 'Back to Book', books_path, class: 'btn btn-secondary' %>
+  <%= link_to 'New Copy', new_book_copy_path(@book), class: 'btn btn-primary' %>
+<% else %>
+  <h1>All Copies</h1>
+<% end %>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">id</th>
+    <th scope="col">Book ID</th>
+    <th scope="col">Borrower</th>
+    <th scope="col">Due Date</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
   <% for copy in @copies %>
-    <li><%= copy.id %></li>
-    <li><%= copy.book_id %></li>
-    <li><%= copy.borrower %></li>
-    <li><%= copy.due_date %></li>
+    <tr>
+      <td><%= copy.id %></td>
+      <td><%= copy.book_id %></td>
+      <td><%= copy.borrower %></td>
+      <td><%= copy.due_date %></td>
+      <td>
+        <%= link_to 'Edit', edit_book_copy_path(@book, copy), class: 'btn btn-primary btn-sm' %>
+      </td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
