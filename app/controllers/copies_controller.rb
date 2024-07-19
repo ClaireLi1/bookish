@@ -1,7 +1,14 @@
 class CopiesController < ApplicationController
+  before_action :authenticate_user!
+  # before_action :set_copy, only: [:show, :edit, :update, :destroy, :borrow, :return]
+  before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
   def index
     @book = Book.find(params[:book_id])
     @copies = @book.copies
+  end
+
+  def show
+
   end
 
   def new
@@ -46,7 +53,7 @@ class CopiesController < ApplicationController
     @book = Book.find(params[:book_id])
     @copy = @book.copies.find(params[:id])
     if @copy.available?
-      @copy.update(borrower: current_user, due_date: 2.weeks.from_now, available: false)
+      @copy.update(borrower: current_user.email, due_date: 2.weeks.from_now, available: false)
       redirect_to dashboard_path, notice: 'Book was successfully borrowed.'
     else
       redirect_to book_copies_path(@book), alert: 'This book copy is currently unavailable.'
@@ -56,7 +63,7 @@ class CopiesController < ApplicationController
   def return
     @book = Book.find(params[:book_id])
     @copy = @book.copies.find(params[:id])
-    if @copy.borrower == current_user
+    if @copy.borrower == current_user.email
       @copy.update(borrower: nil, due_date:nil, available: true)
       redirect_to dashboard_path, notice: 'Book was successfully returned.'
     else
@@ -65,9 +72,12 @@ class CopiesController < ApplicationController
   end
 
   private
+  def admin_only
+    redirect_to(root_path, alert: 'Not authorized') unless current_user.admin?
+  end
 
   def copy_params
-    params.require(:copy).permit(:borrower, :due_date)
+    params.require(:copy).permit(:borrower, :due_date, :available)
   end
 
 end

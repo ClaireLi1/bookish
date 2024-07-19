@@ -1,6 +1,8 @@
 <div class="text-center">
   <h1>My Books</h1>
-  <%= link_to 'Create a New Book', new_book_path, class: 'btn btn-primary' %>
+  <% if user_signed_in? and current_user.admin? %>
+    <%= link_to 'Create a New Book', new_book_path, class: 'btn btn-primary' %>
+  <% end %>
   <button onclick="window.history.back()" class="btn btn-secondary">Back</button>
 </div>
 
@@ -23,7 +25,9 @@
       <td><%= book.author %></td>
       <td><%= book.isbn %></td>
       <td>
-        <%= link_to 'Edit', edit_book_path(book), class: 'btn btn-primary btn-sm' %>
+        <% if user_signed_in? and current_user.admin? %>
+          <%= link_to 'Edit', edit_book_path(book), class: 'btn btn-primary btn-sm' %>
+        <% end %>
         <%= link_to 'Copies', book_copies_path(book), class: 'btn btn-secondary btn-sm' %>
       </td>
     </tr>

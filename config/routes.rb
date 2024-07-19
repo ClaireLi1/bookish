@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :books, except: [:show] do
-    resources :copies, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :copies, only: [:index, :new, :create, :edit, :update, :destroy] do
+      member do
+        patch :borrow
+        patch :return
+      end
+    end
   end
 
-  resources :copies, only: [:index]
-
+  # resource :user, only: [:show]
 end

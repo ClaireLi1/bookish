@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_19_090706) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_19_103551) do
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
     t.string "author", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_090706) do
 
   create_table "copies", force: :cascade do |t|
     t.integer "book_id", null: false
-    t.string "borrower", null: false
+    t.string "borrower"
     t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
