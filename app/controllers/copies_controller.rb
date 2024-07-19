@@ -53,7 +53,7 @@ class CopiesController < ApplicationController
     @book = Book.find(params[:book_id])
     @copy = @book.copies.find(params[:id])
     if @copy.available?
-      @copy.update(borrower: current_user.email, due_date: 2.weeks.from_now, available: false)
+      @copy.update(borrower_id: current_user.id, borrower: current_user, due_date: 2.weeks.from_now, available: false)
       redirect_to dashboard_path, notice: 'Book was successfully borrowed.'
     else
       redirect_to book_copies_path(@book), alert: 'This book copy is currently unavailable.'
@@ -64,7 +64,7 @@ class CopiesController < ApplicationController
     @book = Book.find(params[:book_id])
     @copy = @book.copies.find(params[:id])
     if @copy.borrower == current_user.email
-      @copy.update(borrower: nil, due_date:nil, available: true)
+      @copy.update(borrower: nil, due_date:nil, borrower_id: nil, available: true)
       redirect_to dashboard_path, notice: 'Book was successfully returned.'
     else
       redirect_to book_copies_path(@book), alert: 'Unable to return this book copy.'

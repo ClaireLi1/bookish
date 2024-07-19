@@ -1,2 +1,10 @@
 <h1>Dashboard#index</h1>
-<p>You are logged in as <%= current_user.email %>.</p>
+
+<h2>Borrowed Books</h2>
+<ul>
+  <% @borrowed_copies.each do |copy| %>
+    <li>
+      <%= copy.book.title %> by <%= copy.book.author %> (Borrower: <%= copy.borrower&.email || copy.borrower %>)
+    </li>
+  <% end %>
+</ul>
