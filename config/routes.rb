@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  get 'dashboard/index'
   devise_for :users
+
+  get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
+
   root 'home#index'
 
   resources :books, except: [:show] do
