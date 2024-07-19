@@ -41,6 +41,29 @@ class CopiesController < ApplicationController
     redirect_to book_copies_path(@book), notice: 'Copy was successfully destroyed.'
   end
 
+
+  def borrow
+    @book = Book.find(params[:book_id])
+    @copy = @book.copies.find(params[:id])
+    if @copy.available?
+      @copy.update(borrower: current_user, due_date: 2.weeks.from_now, available: false)
+      redirect_to dashboard_path, notice: 'Book was successfully borrowed.'
+    else
+      redirect_to book_copies_path(@book), alert: 'This book copy is currently unavailable.'
+    end
+  end
+
+  def return
+    @book = Book.find(params[:book_id])
+    @copy = @book.copies.find(params[:id])
+    if @copy.borrower == current_user
+      @copy.update(borrower: nil, due_date:nil, available: true)
+      redirect_to dashboard_path, notice: 'Book was successfully returned.'
+    else
+      redirect_to book_copies_path(@book), alert: 'Unable to return this book copy.'
+    end
+  end
+
   private
 
   def copy_params
