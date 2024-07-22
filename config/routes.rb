@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :books, except: [:show] do
+  resources :books do
     resources :copies, only: [:index, :new, :create, :edit, :update, :destroy] do
       member do
         patch :borrow
@@ -14,5 +14,4 @@ Rails.application.routes.draw do
     end
   end
 
-  # resource :user, only: [:show]
 end
