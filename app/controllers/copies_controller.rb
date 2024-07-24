@@ -1,4 +1,6 @@
 class CopiesController < ApplicationController
+  include CopiesHelper
+
   before_action :authenticate_user!
   before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
   def index
@@ -72,9 +74,6 @@ class CopiesController < ApplicationController
   end
 
   private
-  def admin_only
-    redirect_to(root_path, alert: 'Not authorized') unless current_user.admin?
-  end
 
   def copy_params
     params.require(:copy).permit(:due_date, :available, :borrower_id)
