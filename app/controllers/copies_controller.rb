@@ -1,6 +1,5 @@
 class CopiesController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_copy, only: [:show, :edit, :update, :destroy, :borrow, :return]
   before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
   def index
     @book = Book.find(params[:book_id])
@@ -49,7 +48,6 @@ class CopiesController < ApplicationController
     @copy.destroy
     redirect_to book_copies_path(@book), notice: 'Copy was successfully destroyed.'
   end
-
 
   def borrow
     @book = Book.find(params[:book_id])
