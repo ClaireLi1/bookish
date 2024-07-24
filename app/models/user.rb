@@ -4,5 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :borrowed_copies, class_name: "Copy", foreign_key: "borrower_id"
+  has_many :borrowed_copies, class_name: "Copy", foreign_key: "borrower_id", inverse_of: :borrower
 end

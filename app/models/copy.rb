@@ -1,6 +1,7 @@
 class Copy < ApplicationRecord
   belongs_to :book
-  belongs_to :borrower, class_name: 'User', optional: true, foreign_key: :'borrower_id'
+  belongs_to :borrower, class_name: 'User', optional: true, inverse_of: :borrowed_copies
+
 
   validate :borrower_must_exist, if: -> { borrower_id.present? }
 
