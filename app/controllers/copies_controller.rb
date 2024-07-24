@@ -1,7 +1,6 @@
 class CopiesController < ApplicationController
   include CopiesHelper
 
-  before_action :authenticate_user!
   before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
   def index
     @book = Book.find(params[:book_id])
