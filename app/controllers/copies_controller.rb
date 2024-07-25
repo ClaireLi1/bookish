@@ -1,5 +1,5 @@
 class CopiesController < ApplicationController
-  include CopiesHelper
+  include PermissionsHelper
 
   before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
   def index
