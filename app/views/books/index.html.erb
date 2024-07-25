@@ -1,0 +1,50 @@
+<div class="text-center">
+  <h1>Bookshelf</h1>
+</div>
+
+<div id="AddBookFormHelpBlock" class="form-text mx-auto text-center me-2">
+  This page shows you all the books available in the library in alphabetical order.
+</div>
+<p></p>
+
+<div class="text-center me-2">
+  <% if user_signed_in? and current_user.admin? %>
+    <%= link_to 'Create a New Book', new_book_path, class: 'btn btn-primary' %>
+  <% end %>
+  <button onclick="window.history.back()" class="btn btn-secondary">Back</button>
+</div>
+
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">id</th>
+    <th scope="col">Title</th>
+    <th scope="col">Author</th>
+    <th scope="col">ISBN</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% for book in @books %>
+    <tr>
+      <td><%= book.id %></td>
+      <td><%= book.title %></td>
+      <td><%= book.author %></td>
+      <td><%= book.isbn %></td>
+      <td>
+        <div class="btn-group" role="group">
+          <% if user_signed_in? and current_user.admin? %>
+            <%= link_to 'Edit', edit_book_path(book), class: 'btn btn-primary btn-sm me-2' %>
+            <%= button_to 'Destroy', book, method: :delete, class: 'btn btn-danger btn-sm me-2' %>
+          <% end %>
+          <%= link_to 'Copies', book_copies_path(book), class: 'btn btn-secondary btn-sm me-2' %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+

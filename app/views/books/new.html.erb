@@ -1,0 +1,38 @@
+<div class="mb-3 text-center">
+  <h1>Add Book Form</h1>
+</div>
+
+<div id="AddBookFormHelpBlock" class="form-text mx-auto text-center">
+  This form allows you to add books into the library by providing title, author and unique isbn of the book.
+</div>
+
+<%= form_with(model: @book, local: true) do |form| %>
+
+  <div class="mb-3 mx-auto mt-3" style="max-width: 500px; margin: auto;">
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-control', required: true %>
+    <div id="title_HelpBlock" class="form-text">
+      Please provide a valid title.
+    </div>
+
+    <%= form.label :author, class: 'form-label' %>
+    <%= form.text_field :author, class: 'form-control', required: true %>
+    <div id="author_HelpBlock" class="form-text">
+      Please provide a valid author.
+    </div>
+
+    <%= form.label :isbn, class: 'form-label' %>
+    <%= form.text_field :isbn, class: 'form-control', required: true %>
+    <div id="isbn_HelpBlock" class="form-text">
+      Please provide a valid ISBN.
+    </div>
+  </div>
+
+  <div class="actions text-center">
+    <%= form.submit 'Create Book', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<div class="text-center mx-auto mt-2">
+  <button onclick="window.history.back()" class="btn btn-secondary">Back</button>
+</div>

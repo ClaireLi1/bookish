@@ -1,0 +1,40 @@
+<div class="mb-3 text-center">
+  <h1>Update Copy for <%= @book.title %></h1>
+  <h2>Copy ID: <%= @copy.id%></h2>
+</div>
+
+<div id="AddCopyFormHelpBlock" class="form-text mx-auto text-center">
+  This form allows you to update information about the copy with copy_id: <%= @copy.id%>.
+</div>
+
+<%= form_with(model: [@book, @copy], local: true) do |form| %>
+
+  <div class="mb-3 mx-auto mt-3" style="max-width: 500px; margin: auto;">
+    <%= form.label :borrower_id, class: 'form-label' %>
+    <%= form.text_field :borrower_id, class: 'form-control' %>
+    <div id="borrower_id_HelpBlock" class="form-text">
+      Please provide borrower's id. (Leave empty if no borrower)
+    </div>
+
+    <%= form.label :due_date, class: 'form-label' %>
+    <%= form.date_field :due_date, class: 'form-control'%>
+    <div id="due_date_HelpBlock" class="form-text">
+      Please provide a due date for this copy. (Leave empty if no borrower)
+    </div>
+
+    <%= form.label :available, 'Available', class: 'form-label' %>
+    <%= form.check_box :available, {}, '1', '0' %>
+    <div id="available_HelpBlock" class="form-text">
+      Please indicate whether this copy is available.
+    </div>
+
+  </div>
+
+  <div class="actions text-center">
+    <%= form.submit 'Update Copy', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<div class="text-center mx-auto mt-2">
+  <button onclick="window.history.back()" class="btn btn-secondary">Back</button>
+</div>

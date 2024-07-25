@@ -1,0 +1,12 @@
+<div class="text-center">
+  <h1>Welcome to the Book Management System</h1>
+</div>
+
+
+<div class="text-center">
+  <% if user_signed_in? and current_user.admin? %>
+    <%= link_to 'Create a New Book', new_book_path, class: 'btn btn-primary' %>
+  <% end %>
+  <%= link_to 'List All Books', books_path, class: 'btn btn-secondary' %>
+</div>
+

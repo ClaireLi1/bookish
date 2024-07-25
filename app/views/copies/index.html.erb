@@ -1,0 +1,45 @@
+<div class = "text-center">
+  <h1>Copies of <%= @book.title %></h1>
+  <% if user_signed_in? and current_user.admin? %>
+    <%= link_to 'New Copy', new_book_copy_path(@book), class: 'btn btn-primary' %>
+  <% end %>
+  <button onclick="window.history.back()" class="btn btn-secondary">Back</button>
+</div>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">id</th>
+    <th scope="col">Book ID</th>
+    <% if user_signed_in? and current_user.admin? %>
+      <th scope="col">Borrower ID</th>
+      <th scope="col">Due Date</th>
+    <% end %>
+    <th scope="col">Availability</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% for copy in @copies %>
+    <tr>
+      <td><%= copy.id %></td>
+      <td><%= copy.book_id %></td>
+      <% if user_signed_in? and current_user.admin? %>
+        <td><%= copy.borrower_id %></td>
+        <td><%= copy.due_date %></td>
+      <% end %>
+      <td><%= copy.available %></td>
+      <td>
+        <div class="btn-group" role="group">
+          <% if user_signed_in? and current_user.admin? %>
+            <%= link_to 'Edit', edit_book_copy_path(@book, copy), class: 'btn btn-primary btn-sm me-2' %>
+            <%= button_to 'Destroy', book_copy_path(@book, copy), method: :delete, class: 'btn btn-danger btn-sm me-2' %>
+          <% end %>
+          <%= button_to 'Borrow', borrow_book_copy_path(@book, copy), method: :patch, class: 'btn btn-primary btn-sm me-2' %>
+          <%= button_to 'Return', return_book_copy_path(@book, copy), method: :patch, class: 'btn btn-primary btn-sm me-2' %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

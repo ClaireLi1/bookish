@@ -1,0 +1,22 @@
+<h2>Borrowed Books</h2>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Copy ID</th>
+    <th scope="col">Title</th>
+    <th scope="col">Due Date</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @borrowed_copies.each do |copy| %>
+      <tr>
+        <td><%= copy.id %></td>
+        <td><%= copy.book.title %></td>
+        <td><%= copy.due_date %></td>
+        <td><%= button_to 'Return', return_book_copy_path(copy.book, copy), method: :patch, class: 'btn btn-primary btn-sm me-2' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
